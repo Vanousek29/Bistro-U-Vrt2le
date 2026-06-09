@@ -7,7 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<script src="image-slot.js"></script>
 <style>
   :root {
     --paper: #ECE3CC;
@@ -183,7 +182,7 @@
     display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center;
   }
   .hero h1 {
-    font-size: clamp(44px, 6.4vw, 92px); line-height: 0.94; text-transform: uppercase;
+    font-size: clamp(44px, 6.4vw, 92px); line-height: 1.04; text-transform: uppercase;
     margin: 20px 0 0; color: var(--cream-on-dark); letter-spacing: 0.005em;
   }
   .hero h1 .hl { color: var(--red); }
@@ -201,8 +200,9 @@
   .hero-badge .b-txt { font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; letter-spacing:0.18em; font-size:13px; font-weight:700; color: var(--muted-on-dark); }
 
   .hero-photo { position: relative; }
-  .hero-photo image-slot {
-    width: 100%; height: 520px; border: 3px solid var(--cream-on-dark);
+  .hero-photo img {
+    width: 100%; height: 540px; object-fit: cover; display: block;
+    border: 3px solid var(--cream-on-dark);
     box-shadow: 14px 14px 0 rgba(0,0,0,0.45);
   }
   .photo-tag {
@@ -246,25 +246,35 @@
     font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; letter-spacing:0.08em; font-weight:700;
     font-size: 13px; line-height: 1.45; color: var(--paper); background: var(--ink); padding: 11px 16px 13px; align-self: flex-start; max-width: 300px;
   }
-  .menu-cats { display: grid; grid-template-columns: 1.3fr 1fr; gap: 30px 64px; margin-top: 40px; }
+  .menu-cats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 64px; margin-top: 40px; }
   .menu-cat-title {
     font-family:'Anton',sans-serif; text-transform:uppercase; font-size: 30px; color: var(--ink);
     display: flex; align-items: center; gap: 14px; margin: 10px 0 18px;
   }
   .menu-cat-title::after { content:""; flex:1; height: 3px; background: repeating-linear-gradient(90deg, var(--ink) 0 10px, transparent 10px 18px); }
   .menu-cat.span2 { grid-column: 1 / -1; }
-  .menu-item { display: grid; grid-template-columns: 1fr auto; gap: 6px 14px; padding: 12px 0; border-bottom: 1px dashed rgba(27,26,23,0.28); align-items: baseline; }
-  .menu-item .mi-name { font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:0.02em; font-size: 22px; }
+  .menu-item { display: grid; grid-template-columns: 1fr auto; gap: 5px 14px; padding: 14px 0; border-bottom: 1px dashed rgba(27,26,23,0.28); align-items: baseline; }
+  .menu-item .mi-name { font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:0.02em; font-size: 24px; line-height: 1.05; }
+  .menu-item .mi-meta { font-family:'Anton',sans-serif; font-size: 17px; color: var(--red); white-space: nowrap; letter-spacing: 0.01em; }
   .menu-item .mi-price { font-family:'Anton',sans-serif; font-size: 24px; color: var(--red); white-space: nowrap; }
-  .menu-item .mi-desc { grid-column: 1 / -1; color: var(--ink-soft); font-size: 15px; margin-top: -2px; }
+  .menu-item .mi-desc { grid-column: 1 / -1; color: var(--ink-soft); font-size: 15px; margin-top: 0; }
   .menu-item .mi-name .tag { font-family:'Barlow Condensed',sans-serif; font-size: 12px; letter-spacing:0.12em; color: var(--red); border:1.5px solid var(--red); padding: 1px 6px; vertical-align: middle; margin-left: 8px; }
 
-  /* ---------- GALERIE ---------- */
+  /* ---------- JIDLA (gallery) ---------- */
   .galerie { background: var(--paper-3); }
-  .gal-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px; gap: 16px; margin-top: 44px; }
-  .gal-grid image-slot { width: 100%; height: 100%; border: 2px solid var(--ink); box-shadow: 5px 5px 0 rgba(27,26,23,0.18); }
-  .g-tall { grid-row: span 2; }
-  .g-wide { grid-column: span 2; }
+  .food-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 46px; }
+  .food-card {
+    background: var(--paper-2); border: 2px solid var(--ink);
+    box-shadow: 7px 7px 0 rgba(27,26,23,0.20);
+    display: flex; flex-direction: column;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .food-card:hover { transform: translate(-3px,-3px); box-shadow: 10px 10px 0 rgba(27,26,23,0.20); }
+  .food-card .fc-img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; border-bottom: 2px solid var(--ink); }
+  .food-card .fc-body { padding: 18px 20px 22px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .food-card .fc-name { font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:0.02em; font-size: 25px; line-height: 1; display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin:0; }
+  .food-card .fc-meta { font-family:'Anton',sans-serif; font-size: 16px; color: var(--red); white-space:nowrap; }
+  .food-card .fc-desc { color: var(--ink-soft); font-size: 15px; margin:0; }
 
   /* ---------- AKCE ---------- */
   .akce { background: var(--oxblood); color: var(--cream-on-dark); }
@@ -340,12 +350,12 @@
     .hamburger { display: flex; }
     .hero-inner { grid-template-columns: 1fr; gap: 38px; padding-top: 120px; }
     .hero-photo { order: -1; }
-    .hero-photo image-slot { height: 340px; }
+    .hero-photo img { height: 360px; }
     .provoz-grid { grid-template-columns: 1fr; gap: 40px; }
     .provoz-side { order: -1; }
     .menu-cats { grid-template-columns: 1fr; }
     .events { grid-template-columns: 1fr; }
-    .gal-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
+    .food-grid { grid-template-columns: 1fr 1fr; }
     .kontakt-grid { grid-template-columns: 1fr; }
     .map-frame { min-height: 340px; }
   }
@@ -354,6 +364,7 @@
     .section-pad { padding: 70px 0; }
     .hours-row .day { font-size: 24px; }
     .hours-row .time { font-size: 26px; }
+    .food-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -372,13 +383,13 @@
     <nav class="links">
       <a href="#provoz">Provoz</a>
       <a href="#menu">Menu</a>
-      <a href="#galerie">Galerie</a>
+      <a href="#galerie">Jídla</a>
       <a href="#akce">Akce</a>
       <a href="#kontakt">Kontakt</a>
     </nav>
     <div class="nav-social">
-      <a href="#" aria-label="Facebook" data-social="fb"><svg viewBox="0 0 24 24"><path d="M13.5 21v-7h2.4l.4-2.8h-2.8V9.4c0-.8.2-1.4 1.4-1.4h1.5V5.5c-.7-.1-1.5-.2-2.3-.2-2.3 0-3.9 1.4-3.9 4v2.2H7.9V14h2.3v7h3.3z"/></svg></a>
-      <a href="#" aria-label="Instagram" data-social="ig"><svg viewBox="0 0 24 24"><path d="M12 7.2A4.8 4.8 0 1 0 16.8 12 4.81 4.81 0 0 0 12 7.2zm0 7.9A3.1 3.1 0 1 1 15.1 12 3.1 3.1 0 0 1 12 15.1zm6.1-8.1a1.12 1.12 0 1 1-1.1-1.12A1.12 1.12 0 0 1 18.1 7zM21 7.05a5.54 5.54 0 0 0-1.51-3.92A5.58 5.58 0 0 0 15.57 1.6C14 1.51 9.96 1.51 8.42 1.6a5.57 5.57 0 0 0-3.92 1.51A5.56 5.56 0 0 0 3 7.04c-.09 1.55-.09 6.18 0 7.72a5.54 5.54 0 0 0 1.51 3.92 5.59 5.59 0 0 0 3.92 1.51c1.54.09 6.16.09 7.7 0a5.54 5.54 0 0 0 3.92-1.51 5.58 5.58 0 0 0 1.51-3.92c.09-1.54.09-6.16 0-7.71zm-2 9.36a3.14 3.14 0 0 1-1.77 1.77c-1.22.49-4.13.37-5.48.37s-4.27.11-5.48-.37a3.14 3.14 0 0 1-1.77-1.77c-.49-1.22-.37-4.13-.37-5.48s-.11-4.27.37-5.48a3.14 3.14 0 0 1 1.77-1.77C7.7 3.4 10.6 3.5 12 3.5s4.27-.11 5.48.37a3.14 3.14 0 0 1 1.77 1.77c.49 1.21.37 4.13.37 5.48s.12 4.26-.37 5.47z"/></svg></a>
+      <a href="https://www.facebook.com/people/Bistro-U-Vr2le/61583605542695/" target="_blank" rel="noopener" aria-label="Facebook" data-social="fb"><svg viewBox="0 0 24 24"><path d="M13.5 21v-7h2.4l.4-2.8h-2.8V9.4c0-.8.2-1.4 1.4-1.4h1.5V5.5c-.7-.1-1.5-.2-2.3-.2-2.3 0-3.9 1.4-3.9 4v2.2H7.9V14h2.3v7h3.3z"/></svg></a>
+      <a href="https://www.instagram.com/bistrouvr2le" target="_blank" rel="noopener" aria-label="Instagram" data-social="ig"><svg viewBox="0 0 24 24"><path d="M12 7.2A4.8 4.8 0 1 0 16.8 12 4.81 4.81 0 0 0 12 7.2zm0 7.9A3.1 3.1 0 1 1 15.1 12 3.1 3.1 0 0 1 12 15.1zm6.1-8.1a1.12 1.12 0 1 1-1.1-1.12A1.12 1.12 0 0 1 18.1 7zM21 7.05a5.54 5.54 0 0 0-1.51-3.92A5.58 5.58 0 0 0 15.57 1.6C14 1.51 9.96 1.51 8.42 1.6a5.57 5.57 0 0 0-3.92 1.51A5.56 5.56 0 0 0 3 7.04c-.09 1.55-.09 6.18 0 7.72a5.54 5.54 0 0 0 1.51 3.92 5.59 5.59 0 0 0 3.92 1.51c1.54.09 6.16.09 7.7 0a5.54 5.54 0 0 0 3.92-1.51 5.58 5.58 0 0 0 1.51-3.92c.09-1.54.09-6.16 0-7.71zm-2 9.36a3.14 3.14 0 0 1-1.77 1.77c-1.22.49-4.13.37-5.48.37s-4.27.11-5.48-.37a3.14 3.14 0 0 1-1.77-1.77c-.49-1.22-.37-4.13-.37-5.48s-.11-4.27.37-5.48a3.14 3.14 0 0 1 1.77-1.77C7.7 3.4 10.6 3.5 12 3.5s4.27-.11 5.48.37a3.14 3.14 0 0 1 1.77 1.77c.49 1.21.37 4.13.37 5.48s.12 4.26-.37 5.47z"/></svg></a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -390,7 +401,7 @@
   <button class="close" id="closeMenu" aria-label="Zavřít">×</button>
   <a href="#provoz">Provoz</a>
   <a href="#menu">Menu</a>
-  <a href="#galerie">Galerie</a>
+  <a href="#galerie">Jídla</a>
   <a href="#akce">Akce</a>
   <a href="#kontakt">Kontakt</a>
 </div>
@@ -416,8 +427,8 @@
       </div>
     </div>
     <div class="hero-photo reveal">
-      <div class="photo-tag">Foto: grill / letiště</div>
-      <image-slot id="hero-photo" shape="rect" placeholder="Přetáhni hlavní fotku (burger, gril nebo letiště)"></image-slot>
+      <div class="photo-tag">U Vr2le</div>
+      <img src="assets/food/sandwich.jpg" alt="Sandwich z Bistra U Vr2le" />
     </div>
   </div>
   <div class="runway"></div>
@@ -458,51 +469,69 @@
         <span class="eyebrow">Jídelní lístek</span>
         <h2 class="section-title">Menu</h2>
       </div>
-      <span class="menu-note reveal">Ukázkové menu — finální lístek brzy doplníme</span>
+      <span class="menu-note reveal">Ceny na provozovně · vaříme z čerstvých surovin</span>
     </div>
     <div class="menu-cats">
-      <div class="menu-cat span2 reveal">
-        <h3 class="menu-cat-title">Burgery</h3>
+      <div class="menu-cat reveal">
+        <h3 class="menu-cat-title">Hlavní nabídka</h3>
         <div class="menu-item">
-          <span class="mi-name">Vrtule Classic <span class="tag">TOP</span></span>
-          <span class="mi-price">189 Kč</span>
-          <span class="mi-desc">100% hovězí, čedar, slanina, salát, domácí BBQ omáčka, brioška.</span>
+          <span class="mi-name">Burger</span>
+          <span class="mi-meta">160 g</span>
+          <span class="mi-desc">Hovězí maso, bulka, chedar, naše mayo, polníček, cibulová marmeláda, okurka, steakové hranolky.</span>
         </div>
         <div class="menu-item">
-          <span class="mi-name">Letmý Start</span>
-          <span class="mi-price">169 Kč</span>
-          <span class="mi-desc">Křupavé kuřecí, coleslaw, pickles, česneková majonéza.</span>
+          <span class="mi-name">Vepřová žebra</span>
+          <span class="mi-meta">500 g</span>
+          <span class="mi-desc">Žebra sous vide, křen, BBQ omáčka, paprička, chléb.</span>
         </div>
         <div class="menu-item">
-          <span class="mi-name">Double Hangár</span>
-          <span class="mi-price">229 Kč</span>
-          <span class="mi-desc">Dvojité hovězí, dvojitý sýr, karamelizovaná cibule.</span>
+          <span class="mi-name">Gouda v bulce</span>
+          <span class="mi-meta">150 g</span>
+          <span class="mi-desc">Gouda, bulka, slanina, náš coleslaw, slaninová majonéza.</span>
         </div>
         <div class="menu-item">
-          <span class="mi-name">Pilotův Speciál</span>
-          <span class="mi-price">199 Kč</span>
-          <span class="mi-desc">Trhané vepřové, jalapeño, čedar, BBQ.</span>
+          <span class="mi-name">Kuřecí křídla</span>
+          <span class="mi-meta">500 g</span>
+          <span class="mi-desc">Kuřecí křídla sous vide, sweet chilli marináda, dip ze zakysané smetany, chléb.</span>
         </div>
         <div class="menu-item">
-          <span class="mi-name">Veggie Přistání</span>
-          <span class="mi-price">175 Kč</span>
-          <span class="mi-desc">Grilovaný halloumi, avokádo, rukola, sweet chili.</span>
+          <span class="mi-name">Hot dog</span>
+          <span class="mi-meta"></span>
+          <span class="mi-desc">Řeznický párek ve slanině, chedar, slaninová majonéza, rajčatka, okurkový relish, kečup, americká hořčice, smažená cibulka.</span>
+        </div>
+        <div class="menu-item">
+          <span class="mi-name">Quesadilla</span>
+          <span class="mi-meta"></span>
+          <span class="mi-desc">Tortilla, vepřové trhané maso, chedar, fazole, dip ze zakysané smetany, jarní cibulka.</span>
         </div>
       </div>
       <div class="menu-cat reveal">
-        <h3 class="menu-cat-title">K tomu</h3>
-        <div class="menu-item"><span class="mi-name">Hranolky</span><span class="mi-price">59 Kč</span></div>
-        <div class="menu-item"><span class="mi-name">Batátové hranolky</span><span class="mi-price">75 Kč</span></div>
-        <div class="menu-item"><span class="mi-name">Cibulové kroužky</span><span class="mi-price">65 Kč</span></div>
-        <div class="menu-item"><span class="mi-name">Coleslaw</span><span class="mi-price">45 Kč</span></div>
-        <div class="menu-item"><span class="mi-name">Domácí dipy</span><span class="mi-price">25 Kč</span></div>
-      </div>
-      <div class="menu-cat reveal">
-        <h3 class="menu-cat-title">Pití</h3>
-        <div class="menu-item"><span class="mi-name">Točené pivo 0,5 l</span><span class="mi-price">45 Kč</span></div>
-        <div class="menu-item"><span class="mi-name">Domácí limonáda</span><span class="mi-price">49 Kč</span></div>
-        <div class="menu-item"><span class="mi-name">Kofola 0,4 l</span><span class="mi-price">39 Kč</span></div>
-        <div class="menu-item"><span class="mi-name">Espresso</span><span class="mi-price">45 Kč</span></div>
+        <h3 class="menu-cat-title">K pivu</h3>
+        <div class="menu-item">
+          <span class="mi-name">Utopenec</span>
+          <span class="mi-meta"></span>
+          <span class="mi-desc">Chléb.</span>
+        </div>
+        <div class="menu-item">
+          <span class="mi-name">Nakládaný hermelín</span>
+          <span class="mi-meta"></span>
+          <span class="mi-desc">Chléb.</span>
+        </div>
+        <div class="menu-item">
+          <span class="mi-name">Naše domácí paštika</span>
+          <span class="mi-meta"></span>
+          <span class="mi-desc">Sklenička naší paštiky, opečený toast.</span>
+        </div>
+        <div class="menu-item">
+          <span class="mi-name">Pečené vepřové maso</span>
+          <span class="mi-meta"></span>
+          <span class="mi-desc">Sklenička vepřového masa, chléb.</span>
+        </div>
+        <div class="menu-item">
+          <span class="mi-name">Hranolky</span>
+          <span class="mi-meta"></span>
+          <span class="mi-desc">Kečup / tatarka.</span>
+        </div>
       </div>
     </div>
   </div>
@@ -513,16 +542,52 @@
 <!-- ============ GALERIE ============ -->
 <section class="galerie section-pad" id="galerie">
   <div class="wrap">
-    <span class="eyebrow reveal">Ze života bistra</span>
-    <h2 class="section-title reveal">Galerie</h2>
-    <p class="lead reveal" style="margin-top:14px;">Přetáhni sem fotky burgerů, grilu, letadel nebo atmosféry — uloží se rovnou do stránky.</p>
-    <div class="gal-grid">
-      <image-slot id="gal-1" class="g-tall reveal" shape="rect" placeholder="Foto burgeru"></image-slot>
-      <image-slot id="gal-2" class="g-wide reveal" shape="rect" placeholder="Foto z letiště"></image-slot>
-      <image-slot id="gal-3" class="reveal" shape="rect" placeholder="Detail jídla"></image-slot>
-      <image-slot id="gal-4" class="reveal" shape="rect" placeholder="Gril v akci"></image-slot>
-      <image-slot id="gal-5" class="g-wide reveal" shape="rect" placeholder="Atmosféra / hosté"></image-slot>
-      <image-slot id="gal-6" class="reveal" shape="rect" placeholder="Letadlo"></image-slot>
+    <span class="eyebrow reveal">Co u nás dostaneš</span>
+    <h2 class="section-title reveal">Naše jídla</h2>
+    <p class="lead reveal" style="margin-top:14px;">Šest poctivých jídel přímo z grilu — tak, jak je u nás na ploše dostaneš na prkýnku.</p>
+    <div class="food-grid">
+      <article class="food-card reveal">
+        <img class="fc-img" src="assets/food/burger.jpg" alt="Burger" />
+        <div class="fc-body">
+          <h3 class="fc-name">Burger <span class="fc-meta">160 g</span></h3>
+          <p class="fc-desc">Hovězí maso, rozpuštěný cheddar, domácí mayo, cibulová marmeláda a křupavá okurka. K tomu steakové hranolky.</p>
+        </div>
+      </article>
+      <article class="food-card reveal">
+        <img class="fc-img" src="assets/food/zebra.jpg" alt="Vepřová žebra" />
+        <div class="fc-body">
+          <h3 class="fc-name">Vepřová žebra <span class="fc-meta">500 g</span></h3>
+          <p class="fc-desc">Šťavnatá žebra sous vide, BBQ omáčka s papričkou a křenem, nakládaná cibule a chléb na vytření talíře.</p>
+        </div>
+      </article>
+      <article class="food-card reveal">
+        <img class="fc-img" src="assets/food/gouda.jpg" alt="Gouda v bulce" />
+        <div class="fc-body">
+          <h3 class="fc-name">Gouda v bulce <span class="fc-meta">150 g</span></h3>
+          <p class="fc-desc">Hodně goudy, slanina, náš coleslaw a vyladěná slaninová majonéza. Sytý a šťavnatý.</p>
+        </div>
+      </article>
+      <article class="food-card reveal">
+        <img class="fc-img" src="assets/food/kridla.jpg" alt="Kuřecí křídla" />
+        <div class="fc-body">
+          <h3 class="fc-name">Kuřecí křídla <span class="fc-meta">500 g</span></h3>
+          <p class="fc-desc">Křídla sous vide v sweet chilli marinádě, dip ze zakysané smetany a chléb. Měkká a šťavnatá.</p>
+        </div>
+      </article>
+      <article class="food-card reveal">
+        <img class="fc-img" src="assets/food/hotdog.jpg" alt="Hot dog" />
+        <div class="fc-body">
+          <h3 class="fc-name">Hot dog</h3>
+          <p class="fc-desc">Řeznický párek ve slanině, cheddar, okurkový relish, smažená cibulka, kečup a americká hořčice.</p>
+        </div>
+      </article>
+      <article class="food-card reveal">
+        <img class="fc-img" src="assets/food/quesadilla.jpg" alt="Quesadilla" />
+        <div class="fc-body">
+          <h3 class="fc-name">Quesadilla</h3>
+          <p class="fc-desc">Tortilla plná trhaného vepřového, fazolí a sýra, který se táhne. S dipem ze zakysané smetany a jarní cibulkou.</p>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -584,8 +649,8 @@
         <div class="contact-item reveal">
           <div class="ci-label">Sledujte nás</div>
           <div class="contact-social">
-            <a href="#" data-social="fb"><svg viewBox="0 0 24 24"><path d="M13.5 21v-7h2.4l.4-2.8h-2.8V9.4c0-.8.2-1.4 1.4-1.4h1.5V5.5c-.7-.1-1.5-.2-2.3-.2-2.3 0-3.9 1.4-3.9 4v2.2H7.9V14h2.3v7h3.3z"/></svg>Facebook</a>
-            <a href="#" data-social="ig"><svg viewBox="0 0 24 24"><path d="M12 7.2A4.8 4.8 0 1 0 16.8 12 4.81 4.81 0 0 0 12 7.2zm0 7.9A3.1 3.1 0 1 1 15.1 12 3.1 3.1 0 0 1 12 15.1zm6.1-8.1a1.12 1.12 0 1 1-1.1-1.12A1.12 1.12 0 0 1 18.1 7zM21 7.05a5.54 5.54 0 0 0-1.51-3.92A5.58 5.58 0 0 0 15.57 1.6C14 1.51 9.96 1.51 8.42 1.6a5.57 5.57 0 0 0-3.92 1.51A5.56 5.56 0 0 0 3 7.04c-.09 1.55-.09 6.18 0 7.72a5.54 5.54 0 0 0 1.51 3.92 5.59 5.59 0 0 0 3.92 1.51c1.54.09 6.16.09 7.7 0a5.54 5.54 0 0 0 3.92-1.51 5.58 5.58 0 0 0 1.51-3.92c.09-1.54.09-6.16 0-7.71zm-2 9.36a3.14 3.14 0 0 1-1.77 1.77c-1.22.49-4.13.37-5.48.37s-4.27.11-5.48-.37a3.14 3.14 0 0 1-1.77-1.77c-.49-1.22-.37-4.13-.37-5.48s-.11-4.27.37-5.48a3.14 3.14 0 0 1 1.77-1.77C7.7 3.4 10.6 3.5 12 3.5s4.27-.11 5.48.37a3.14 3.14 0 0 1 1.77 1.77c.49 1.21.37 4.13.37 5.48s.12 4.26-.37 5.47z"/></svg>Instagram</a>
+            <a href="https://www.facebook.com/people/Bistro-U-Vr2le/61583605542695/" target="_blank" rel="noopener" data-social="fb"><svg viewBox="0 0 24 24"><path d="M13.5 21v-7h2.4l.4-2.8h-2.8V9.4c0-.8.2-1.4 1.4-1.4h1.5V5.5c-.7-.1-1.5-.2-2.3-.2-2.3 0-3.9 1.4-3.9 4v2.2H7.9V14h2.3v7h3.3z"/></svg>Facebook</a>
+            <a href="https://www.instagram.com/bistrouvr2le" target="_blank" rel="noopener" data-social="ig"><svg viewBox="0 0 24 24"><path d="M12 7.2A4.8 4.8 0 1 0 16.8 12 4.81 4.81 0 0 0 12 7.2zm0 7.9A3.1 3.1 0 1 1 15.1 12 3.1 3.1 0 0 1 12 15.1zm6.1-8.1a1.12 1.12 0 1 1-1.1-1.12A1.12 1.12 0 0 1 18.1 7zM21 7.05a5.54 5.54 0 0 0-1.51-3.92A5.58 5.58 0 0 0 15.57 1.6C14 1.51 9.96 1.51 8.42 1.6a5.57 5.57 0 0 0-3.92 1.51A5.56 5.56 0 0 0 3 7.04c-.09 1.55-.09 6.18 0 7.72a5.54 5.54 0 0 0 1.51 3.92 5.59 5.59 0 0 0 3.92 1.51c1.54.09 6.16.09 7.7 0a5.54 5.54 0 0 0 3.92-1.51 5.58 5.58 0 0 0 1.51-3.92c.09-1.54.09-6.16 0-7.71zm-2 9.36a3.14 3.14 0 0 1-1.77 1.77c-1.22.49-4.13.37-5.48.37s-4.27.11-5.48-.37a3.14 3.14 0 0 1-1.77-1.77c-.49-1.22-.37-4.13-.37-5.48s-.11-4.27.37-5.48a3.14 3.14 0 0 1 1.77-1.77C7.7 3.4 10.6 3.5 12 3.5s4.27-.11 5.48.37a3.14 3.14 0 0 1 1.77 1.77c.49 1.21.37 4.13.37 5.48s.12 4.26-.37 5.47z"/></svg>Instagram</a>
           </div>
         </div>
       </div>
@@ -611,7 +676,7 @@
       <nav class="foot-links">
         <a href="#provoz">Provoz</a>
         <a href="#menu">Menu</a>
-        <a href="#galerie">Galerie</a>
+        <a href="#galerie">Jídla</a>
         <a href="#akce">Akce</a>
         <a href="#kontakt">Kontakt</a>
       </nav>
